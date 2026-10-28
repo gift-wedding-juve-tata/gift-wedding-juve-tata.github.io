@@ -6,25 +6,37 @@
   <title>Wedding Gift · Juve & Tata</title>
   <meta name="description" content="Daftar kado pernikahan Juve & Tata — pilih kado supaya tidak sama dengan tamu lain.">
   <meta name="theme-color" content="#f6f1ea">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎁</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23a8685a' d='M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.2 4.3 2.4.7-1.2 2.2-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <!-- Layar sambutan: tanya nama tamu -->
-  <section class="welcome hidden" id="welcome">
+  <section class="welcome intro hidden" id="welcome">
+    <div class="petals" id="petals" aria-hidden="true"></div>
+    <div class="blob b1" aria-hidden="true"></div>
+    <div class="blob b2" aria-hidden="true"></div>
     <form class="welcome-card" id="welcomeForm" autocomplete="off">
-      <div class="monogram">J&amp;T</div>
-      <p class="eyebrow">Wedding Gift List</p>
-      <h1>Juve &amp; Tata</h1>
-      <p class="lead">Terima kasih sudah ingin memberi kado 🤍<br>Pilih kado dari daftar supaya tidak sama dengan tamu lain.</p>
-      <div class="field">
-        <label for="guestName">Boleh tahu nama kamu?</label>
-        <input class="input" id="guestName" maxlength="40" placeholder="Contoh: Burhan" required>
+      <div class="monogram anim">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="draw" cx="60" cy="60" r="56"/><circle class="draw d2" cx="60" cy="60" r="49"/></svg>
+        <span class="mono-text">J<em>&amp;</em>T</span>
+        <i class="fa-solid fa-star spark s1"></i><i class="fa-solid fa-star spark s2"></i><i class="fa-solid fa-star spark s3"></i>
       </div>
-      <button class="btn btn-primary btn-block" type="submit">Lihat daftar kado →</button>
+      <p class="eyebrow anim a1">Wedding Gift List</p>
+      <h1 class="split" id="title">Juve &amp; Tata</h1>
+      <div class="divider anim a2"><span></span><i class="fa-solid fa-heart"></i><span></span></div>
+      <p class="lead anim a3">Terima kasih sudah ingin memberi kado.<br>Pilih kado dari daftar supaya tidak sama dengan tamu lain.</p>
+      <div class="field anim a4">
+        <label for="guestName">Boleh tahu nama kamu?</label>
+        <div class="input-wrap">
+          <i class="fa-regular fa-user"></i>
+          <input class="input" id="guestName" maxlength="40" placeholder="Tulis nama kamu">
+        </div>
+      </div>
+      <button class="btn btn-primary btn-block shine anim a5" type="submit">Lihat daftar kado <i class="fa-solid fa-arrow-right"></i></button>
     </form>
   </section>
 
@@ -66,8 +78,8 @@
     <div id="list"><div class="loading"><div class="spinner"></div>Memuat daftar kado…</div></div>
 
     <footer class="footer">
-      <div class="script">Terima kasih 🤍</div>
-      atas doa dan perhatian untuk pernikahan Juve &amp; Tata 💐
+      <div class="script">Terima kasih <i class="fa-solid fa-heart"></i></div>
+      atas doa dan perhatian untuk pernikahan Juve &amp; Tata
     </footer>
   </main>
 

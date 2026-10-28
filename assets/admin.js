@@ -1,11 +1,11 @@
 // Panel admin: kelola jenis barang kado.
 (function () {
-  const { esc, catIcon, toast, openSheet, closeSheet, busy } = UI;
+  const { esc, icon, catIcon, toast, openSheet, closeSheet, busy } = UI;
   const $ = (id) => document.getElementById(id);
   // SHA-256 dari "username:password"
   const CRED_HASH = "854abec4b4b5bbcbb520ab779b57970f3bf49a830a598c22b291cc47e3af3849";
   const SESSION_KEY = "giftlist-admin";
-  const EMOJIS = ["🎁", "🍳", "🍲", "🔪", "🥄", "🍽️", "🥣", "☕", "🫖", "💧", "🧺", "🛏️", "🛋️", "🪞", "💡", "🕰️", "🧹", "🧽", "🪣", "🧴", "🚿", "🧺", "📦", "🖼️", "🌿", "🧸", "📺", "🔌"];
+  const ICONS = ["gift", "egg", "kitchen-set", "bowl-rice", "fire-burner", "blender", "utensils", "spoon", "mug-hot", "mug-saucer", "glass-water", "bowl-food", "plate-wheat", "jar", "box", "bottle-water", "droplet", "plug", "clock", "trash-can", "rug", "shirt", "fan", "lightbulb", "bed", "couch", "chair", "tv", "image-portrait", "broom", "bucket", "spray-can", "soap", "pump-soap", "sink", "shower", "bath", "spa", "cookie", "heart", "basket-shopping", "box-archive", "seedling", "wind"];
 
   const state = { items: [], q: "" };
 
@@ -59,15 +59,15 @@
       if (!rows.length) return "";
       return `<div class="section-title">${catIcon(c)} ${esc(c)}<small>${rows.length} barang</small></div>` +
         rows.map((i) => `<div class="admin-row">
-          <div class="e">${esc(i.ikon || "🎁")}</div>
+          <div class="e">${icon(i.ikon)}</div>
           <div class="t"><b>${esc(i.nama)}</b>${i.pemberi
-            ? `<span class="who">🎁 ${esc(i.pemberi)}</span> <span>· ${new Date(i.waktu).toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" })}</span>`
+            ? `<span class="who">${icon("gift")} ${esc(i.pemberi)}</span>${i.waktu && !isNaN(new Date(i.waktu)) ? ` <span>· ${new Date(i.waktu).toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" })}</span>` : ""}`
             : "<span>Tersedia</span>"}</div>
-          ${i.pemberi ? `<button class="icon-btn" title="Kosongkan pemberi" data-act="reset" data-id="${esc(i.id)}">↺</button>` : ""}
-          <button class="icon-btn" title="Ubah" data-act="edit" data-id="${esc(i.id)}">✎</button>
-          <button class="icon-btn" title="Hapus" data-act="del" data-id="${esc(i.id)}">🗑</button>
+          ${i.pemberi ? `<button class="icon-btn" title="Kosongkan pemberi" data-act="reset" data-id="${esc(i.id)}">${icon("rotate-left")}</button>` : ""}
+          <button class="icon-btn" title="Ubah" data-act="edit" data-id="${esc(i.id)}">${icon("pen")}</button>
+          <button class="icon-btn" title="Hapus" data-act="del" data-id="${esc(i.id)}">${icon("trash-can")}</button>
         </div>`).join("");
-    }).join("") || `<div class="empty"><div class="big">📭</div>Belum ada barang.</div>`;
+    }).join("") || `<div class="empty"><div class="big">${icon("box-open")}</div>Belum ada barang.</div>`;
   }
 
   $("q").oninput = (e) => { state.q = e.target.value; render(); };
@@ -89,7 +89,7 @@
       });
       closeSheet();
       render();
-      toast("Tersimpan ✓");
+      toast("Tersimpan");
     } catch (e) {
       toast(e.message, true);
     }
@@ -97,7 +97,7 @@
 
   function editItem(it) {
     const isNew = !it;
-    const v = it || { nama: "", kategori: cats()[0] || "", ikon: "🎁" };
+    const v = it || { nama: "", kategori: cats()[0] || "", ikon: "gift" };
     openSheet(`<h3>${isNew ? "Tambah barang" : "Ubah barang"}</h3><div class="cat">jenis barang kado</div>
       <form class="form" id="itemForm">
         <div class="field"><label>Nama barang</label><input class="input" name="nama" required maxlength="60" value="${esc(v.nama)}" placeholder="Contoh: Air fryer"></div>
@@ -105,8 +105,8 @@
           <input class="input" name="kategori" required list="catList" value="${esc(v.kategori)}" placeholder="Pilih atau ketik kategori baru">
           <datalist id="catList">${cats().map((c) => `<option value="${esc(c)}">`).join("")}</datalist>
         </div>
-        <div class="field"><label>Ikon (emoji)</label><input class="input" name="ikon" maxlength="8" value="${esc(v.ikon)}">
-          <div class="emoji-pick">${EMOJIS.map((e) => `<button type="button">${e}</button>`).join("")}</div>
+        <div class="field"><label>Ikon</label><input type="hidden" name="ikon" value="${esc(v.ikon)}">
+          <div class="emoji-pick">${ICONS.map((n) => `<button type="button" data-ico="${n}" class="${n === v.ikon ? "on" : ""}" title="${n}">${icon(n)}</button>`).join("")}</div>
         </div>
         <div class="actions">
           <button type="button" class="btn btn-ghost" data-close>Batal</button>
@@ -114,10 +114,15 @@
         </div>
       </form>`, (s) => {
       const f = s.querySelector("#itemForm");
-      s.querySelector(".emoji-pick").onclick = (e) => { if (e.target.tagName === "BUTTON") f.ikon.value = e.target.textContent; };
+      s.querySelector(".emoji-pick").onclick = (e) => {
+        const b = e.target.closest("button");
+        if (!b) return;
+        f.ikon.value = b.dataset.ico;
+        s.querySelectorAll(".emoji-pick button").forEach((x) => x.classList.toggle("on", x === b));
+      };
       f.onsubmit = (e) => {
         e.preventDefault();
-        const data = { nama: f.nama.value.trim(), kategori: f.kategori.value.trim(), ikon: f.ikon.value.trim() || "🎁" };
+        const data = { nama: f.nama.value.trim(), kategori: f.kategori.value.trim(), ikon: f.ikon.value.trim() || "gift" };
         save((rows) => {
           if (isNew) {
             const id = String(rows.reduce((m, r) => Math.max(m, +r.id || 0), 0) + 1);
@@ -151,7 +156,7 @@
       state.items = (await GiftStore.load()).items;
       render();
     } catch (e) {
-      $("list").innerHTML = `<div class="empty"><div class="big">😕</div>${esc(e.message)}</div>`;
+      $("list").innerHTML = `<div class="empty"><div class="big">${icon("cloud-bolt")}</div>${esc(e.message)}</div>`;
     }
   }
 
@@ -174,7 +179,7 @@
         $("tokenIn").value = "";
         renderConn();
         refresh();
-        toast("Token tersimpan ✓ Situs ter-update ±1 menit lagi");
+        toast("Token tersimpan. Situs ter-update ±1 menit lagi");
       } catch (err) {
         toast("Token gagal dipakai: " + err.message, true);
       }

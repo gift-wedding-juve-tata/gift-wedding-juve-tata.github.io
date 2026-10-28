@@ -6,16 +6,17 @@
   <title>Admin · Gift Juve & Tata</title>
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#f6f1ea">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23a8685a' d='M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.2 4.3 2.4.7-1.2 2.2-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
   <section class="welcome" id="login">
     <form class="welcome-card" id="loginForm">
-      <div class="monogram">⚙</div>
+      <div class="monogram"><i class="fa-solid fa-gear"></i></div>
       <p class="eyebrow">Admin Panel</p>
       <h1>Juve &amp; Tata</h1>
       <p class="lead">Kelola daftar jenis barang kado.</p>
@@ -24,7 +25,7 @@
         <div class="field"><label for="p">Password</label><input class="input" id="p" type="password" autocomplete="current-password" required></div>
       </div>
       <button class="btn btn-primary btn-block" type="submit">Masuk</button>
-      <p style="margin-top:18px"><a href="../" style="color:var(--muted);font-size:13px">← Kembali ke daftar kado</a></p>
+      <p style="margin-top:18px"><a href="../" style="color:var(--muted);font-size:13px"><i class="fa-solid fa-arrow-left"></i> Kembali ke daftar kado</a></p>
     </form>
   </section>
 
@@ -51,7 +52,7 @@
           <input class="input" id="q" type="search" placeholder="Cari barang atau nama tamu…">
         </label>
       </div>
-      <button class="btn btn-primary btn-block" id="addBtn" style="margin-top:0">＋ Tambah jenis barang</button>
+      <button class="btn btn-primary btn-block" id="addBtn" style="margin-top:0"><i class="fa-solid fa-plus"></i> Tambah jenis barang</button>
       <div id="list"><div class="loading"><div class="spinner"></div>Memuat…</div></div>
     </section>
 
@@ -74,7 +75,7 @@
       <div class="panel">
         <h3>Unduh data</h3>
         <p>Simpan salinan daftar kado + nama pemberi dalam format CSV (bisa dibuka di Excel).</p>
-        <button class="btn btn-ghost btn-block" id="dlBtn" style="margin-top:0">⬇ Unduh gifts.csv</button>
+        <button class="btn btn-ghost btn-block" id="dlBtn" style="margin-top:0"><i class="fa-solid fa-download"></i> Unduh gifts.csv</button>
       </div>
     </section>
   </main>

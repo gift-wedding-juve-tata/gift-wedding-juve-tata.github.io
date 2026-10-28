@@ -2,20 +2,26 @@
 (function () {
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-  const CAT_ICONS = {
-    "peralatan dapur": "🍳",
-    "perlengkapan rumah": "🏠",
-    "peralatan kebersihan": "🧹",
-    "peralatan makan & sajian": "🍽️",
+  // Ikon Font Awesome dari nama (mis. "blender"); nilai lain (data lama berupa emoji) ditampilkan apa adanya.
+  const icon = (name, fallback = "gift") => {
+    const n = String(name || "").trim() || fallback;
+    return /^[a-z0-9-]+$/.test(n) ? `<i class="fa-solid fa-${n}" aria-hidden="true"></i>` : esc(n);
   };
-  const catIcon = (c) => CAT_ICONS[String(c).toLowerCase()] || "🎁";
+
+  const CAT_ICONS = {
+    "peralatan dapur": "kitchen-set",
+    "perlengkapan rumah": "house-chimney",
+    "peralatan kebersihan": "broom",
+    "peralatan makan & sajian": "utensils",
+  };
+  const catIcon = (c) => icon(CAT_ICONS[String(c).toLowerCase()] || "tags");
 
   let toastTimer;
   function toast(msg, isErr) {
     document.querySelector(".toast")?.remove();
     const el = document.createElement("div");
     el.className = "toast" + (isErr ? " err" : "");
-    el.textContent = msg;
+    el.innerHTML = `${icon(isErr ? "circle-exclamation" : "circle-check")}<span>${esc(msg)}</span>`;
     document.body.appendChild(el);
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => el.remove(), 3200);
@@ -40,5 +46,5 @@
     finally { btn.disabled = false; btn.innerHTML = html; }
   }
 
-  window.UI = { esc, catIcon, toast, openSheet, closeSheet, busy };
+  window.UI = { esc, icon, catIcon, toast, openSheet, closeSheet, busy };
 })();

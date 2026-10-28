@@ -100,7 +100,7 @@
 
   // Ambil data terbaru, ubah lewat fn(items), lalu simpan. Diulang bila bentrok dengan tamu lain.
   async function mutate(fn, message) {
-    if (!canWrite()) throw new Error("Situs belum tersambung ke penyimpanan. Hubungi pengantin ya 🙏");
+    if (!canWrite()) throw new Error("Situs belum tersambung ke penyimpanan. Hubungi pengantin ya.");
     for (let attempt = 0; attempt < 4; attempt++) {
       const { items, sha } = await load();
       const result = fn(items);
