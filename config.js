@@ -4,5 +4,5 @@ window.GIFT_CONFIG = {
   repo: "gift-wedding-juve-tata.github.io",
   branch: "main",
   path: "data/gifts.csv",
-  key: ""
+  key: "V0ZCdVprMWdQUUpVQk9ITnBMZVFIV2pYN3ZFY0NMRWlMaGRKTFozTjV3b280enR2OEd5aUtmdmlqZXRfUDhuTFVXMExTU0poMFFTSEdNWEIxMV90YXBfYnVodGln"
 };
