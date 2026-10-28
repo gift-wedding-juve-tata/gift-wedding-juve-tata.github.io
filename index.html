@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Wedding Gift · Juve & Tata</title>
+  <meta name="description" content="Daftar kado pernikahan Juve & Tata — pilih kado supaya tidak sama dengan tamu lain.">
+  <meta name="theme-color" content="#f6f1ea">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎁</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <!-- Layar sambutan: tanya nama tamu -->
+  <section class="welcome hidden" id="welcome">
+    <form class="welcome-card" id="welcomeForm" autocomplete="off">
+      <div class="monogram">J&amp;T</div>
+      <p class="eyebrow">Wedding Gift List</p>
+      <h1>Juve &amp; Tata</h1>
+      <p class="lead">Terima kasih sudah ingin memberi kado 🤍<br>Pilih kado dari daftar supaya tidak sama dengan tamu lain.</p>
+      <div class="field">
+        <label for="guestName">Boleh tahu nama kamu?</label>
+        <input class="input" id="guestName" maxlength="40" placeholder="Contoh: Burhan" required>
+      </div>
+      <button class="btn btn-primary btn-block" type="submit">Lihat daftar kado →</button>
+    </form>
+  </section>
+
+  <main class="app" id="app">
+    <header class="top">
+      <div class="brand">
+        <p class="eyebrow">Wedding Gift</p>
+        <h2>Juve &amp; Tata</h2>
+      </div>
+      <button class="me" id="meBtn" title="Ganti nama">
+        <div class="avatar" id="meAvatar">?</div><span id="meName"></span>
+      </button>
+    </header>
+
+    <p class="hello">Hai <b id="helloName"></b>! Ketuk salah satu kado yang ingin kamu berikan. Kado yang sudah ada namanya berarti sudah dipilih tamu lain.</p>
+
+    <div class="progress-card">
+      <div class="ring" id="ring" data-label="0%"></div>
+      <div>
+        <h3 id="progTitle">Memuat…</h3>
+        <p id="progSub">Mengambil daftar kado terbaru</p>
+      </div>
+    </div>
+    <div class="banner hidden" id="banner"></div>
+
+    <div class="toolbar">
+      <label class="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input class="input" id="q" type="search" placeholder="Cari kado… (misal: dispenser)">
+      </label>
+      <div class="chips" id="chips"></div>
+      <div class="seg" id="seg">
+        <button data-f="all" class="active">Semua</button>
+        <button data-f="free">Tersedia</button>
+        <button data-f="taken">Sudah dipilih</button>
+      </div>
+    </div>
+
+    <div id="list"><div class="loading"><div class="spinner"></div>Memuat daftar kado…</div></div>
+
+    <footer class="footer">
+      <div class="script">Terima kasih 🤍</div>
+      atas doa dan perhatian untuk pernikahan Juve &amp; Tata 💐
+    </footer>
+  </main>
+
+  <div class="mybar hidden" id="mybar">
+    <div class="txt"><b id="mybarTitle"></b><span id="mybarSub"></span></div>
+    <button class="btn" id="mybarBtn">Lihat</button>
+  </div>
+
+  <div id="sheetRoot"></div>
+
+  <script src="config.js"></script>
+  <script src="assets/store.js"></script>
+  <script src="assets/ui.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

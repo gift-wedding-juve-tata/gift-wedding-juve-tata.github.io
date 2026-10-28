@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Admin · Gift Juve & Tata</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f6f1ea">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <section class="welcome" id="login">
+    <form class="welcome-card" id="loginForm">
+      <div class="monogram">⚙</div>
+      <p class="eyebrow">Admin Panel</p>
+      <h1>Juve &amp; Tata</h1>
+      <p class="lead">Kelola daftar jenis barang kado.</p>
+      <div class="form">
+        <div class="field"><label for="u">Username</label><input class="input" id="u" autocomplete="username" required></div>
+        <div class="field"><label for="p">Password</label><input class="input" id="p" type="password" autocomplete="current-password" required></div>
+      </div>
+      <button class="btn btn-primary btn-block" type="submit">Masuk</button>
+      <p style="margin-top:18px"><a href="../" style="color:var(--muted);font-size:13px">← Kembali ke daftar kado</a></p>
+    </form>
+  </section>
+
+  <main class="app hidden" id="app">
+    <header class="top">
+      <div class="brand"><p class="eyebrow">Admin Panel</p><h2>Gift List</h2></div>
+      <button class="me" id="logout"><div class="avatar">JT</div><span>Keluar</span></button>
+    </header>
+
+    <div class="progress-card">
+      <div class="ring" id="ring" data-label="0%"></div>
+      <div><h3 id="progTitle">Memuat…</h3><p id="progSub"></p></div>
+    </div>
+
+    <div class="seg" id="tabs" style="margin-top:16px">
+      <button data-tab="items" class="active">Daftar Barang</button>
+      <button data-tab="settings">Pengaturan</button>
+    </div>
+
+    <section id="tab-items">
+      <div class="toolbar">
+        <label class="search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input class="input" id="q" type="search" placeholder="Cari barang atau nama tamu…">
+        </label>
+      </div>
+      <button class="btn btn-primary btn-block" id="addBtn" style="margin-top:0">＋ Tambah jenis barang</button>
+      <div id="list"><div class="loading"><div class="spinner"></div>Memuat…</div></div>
+    </section>
+
+    <section id="tab-settings" class="hidden">
+      <div class="panel">
+        <h3><span class="status-dot" id="dot"></span><span id="connTitle"></span></h3>
+        <p id="connSub"></p>
+        <ol>
+          <li>Buka <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → Fine-grained token</a> (login sebagai <code>gift-wedding-juve-tata</code>).</li>
+          <li>Repository access: <b>Only select repositories</b> → <code>gift-wedding-juve-tata.github.io</code>.</li>
+          <li>Permissions → Repository → <b>Contents: Read and write</b>. Expiration: setelah acara selesai.</li>
+          <li>Generate, salin token, tempel di bawah lalu Simpan.</li>
+        </ol>
+        <div class="form">
+          <input class="input" id="tokenIn" type="password" placeholder="github_pat_…" autocomplete="off">
+        </div>
+        <button class="btn btn-primary btn-block" id="saveToken" style="margin-top:0">Simpan token</button>
+        <p style="margin:12px 0 0">Setelah disimpan, situs butuh ±1 menit untuk ter-update.</p>
+      </div>
+      <div class="panel">
+        <h3>Unduh data</h3>
+        <p>Simpan salinan daftar kado + nama pemberi dalam format CSV (bisa dibuka di Excel).</p>
+        <button class="btn btn-ghost btn-block" id="dlBtn" style="margin-top:0">⬇ Unduh gifts.csv</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="sheetRoot"></div>
+
+  <script src="../config.js"></script>
+  <script>window.GIFT_BASE = "../";</script>
+  <script src="../assets/store.js"></script>
+  <script src="../assets/ui.js"></script>
+  <script src="../assets/admin.js"></script>
+</body>
+</html>
