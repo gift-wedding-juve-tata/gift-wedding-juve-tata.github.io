@@ -30,7 +30,7 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
-button, input, select { font: inherit; color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; border: 0; background: none; }
 .hidden { display: none !important; }
 
@@ -357,3 +357,43 @@ button { cursor: pointer; border: 0; background: none; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; }
   .petals { display: none; }
 }
+
+/* ---------- Info acara & hitung mundur ---------- */
+.w-event { margin: 0 0 18px; }
+.ev-date { font-size: 13px; font-weight: 600; color: var(--rose-deep); margin-bottom: 10px; }
+.ev-date i { margin-right: 4px; }
+.countdown { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.countdown > div { background: rgba(255,253,249,.8); border: 1px solid var(--line); border-radius: 14px; padding: 8px 4px; text-align: center; backdrop-filter: blur(4px); }
+.countdown b { display: block; font-family: var(--serif); font-size: 26px; line-height: 1.1; color: var(--ink); font-weight: 600; }
+.countdown b.flip { animation: flip .45s ease; }
+.countdown span { font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); }
+.cd-done { padding: 12px; border-radius: 14px; background: var(--gold-soft); color: #7d5f24; font-weight: 600; font-size: 14px; text-align: center; }
+.event-card { margin-top: 12px; padding: 16px 18px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); }
+.ev-head { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.ev-head > i { font-size: 22px; color: var(--gold); }
+.ev-title { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--rose-deep); }
+.ev-sub, .ev-place { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.ev-place i { color: var(--rose); margin-right: 2px; }
+@keyframes flip { from { transform: translateY(-25%); opacity: .45; } }
+
+/* ---------- Ucapan & doa ---------- */
+textarea.input { resize: none; font-size: 14px; line-height: 1.5; }
+.wish-field { text-align: left; margin-bottom: 16px; }
+.wish-field label { display: block; font-size: 13px; font-weight: 600; margin: 0 0 8px 4px; }
+.wish-field label i { color: var(--rose); margin-right: 2px; }
+.wish-field small { color: var(--muted); font-weight: 500; }
+.wish-field .counter { text-align: right; font-size: 11px; color: var(--muted); margin-top: 4px; }
+.wishes { margin-top: 12px; }
+.wish { display: flex; gap: 12px; padding: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; margin-bottom: 8px; animation: pop .35s ease both; }
+.wish b { font-size: 13.5px; }
+.wish p { margin: 3px 0 0; font-size: 13.5px; color: var(--muted); line-height: 1.55; white-space: pre-line; word-break: break-word; }
+
+/* ---------- Admin: tambahan ---------- */
+.admin-row .t span.wish-line { display: block; margin-top: 4px; font-style: italic; white-space: normal; line-height: 1.45; }
+.admin-row .t span.link-txt { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.icon-btn.wa { color: #25a35a; text-decoration: none; font-size: 17px; }
+.icon-btn.wa:hover { background: #e3f4e9; color: #1d8a4b; }
+#tabs button { font-size: 12.5px; padding: 8px 4px; }
+.panel h3 i { color: var(--rose); margin-right: 4px; }
+.panel textarea.input { margin-bottom: 0; }
+.panel .field label { display: block; font-size: 13px; font-weight: 600; margin: 0 0 8px 4px; }

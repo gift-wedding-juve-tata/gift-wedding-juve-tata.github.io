@@ -28,15 +28,16 @@
       <p class="eyebrow anim a1">Wedding Gift List</p>
       <h1 class="split" id="title">Juve &amp; Tata</h1>
       <div class="divider anim a2"><span></span><i class="fa-solid fa-heart"></i><span></span></div>
+      <div class="w-event anim a2 hidden" id="wEvent"></div>
       <p class="lead anim a3">Terima kasih sudah ingin memberi kado.<br>Pilih kado dari daftar supaya tidak sama dengan tamu lain.</p>
       <div class="field anim a4">
-        <label for="guestName">Boleh tahu nama kamu?</label>
+        <label for="guestName" id="nameLabel">Boleh tahu nama kamu?</label>
         <div class="input-wrap">
           <i class="fa-regular fa-user"></i>
           <input class="input" id="guestName" maxlength="40" placeholder="Tulis nama kamu">
         </div>
       </div>
-      <button class="btn btn-primary btn-block shine anim a5" type="submit">Lihat daftar kado <i class="fa-solid fa-arrow-right"></i></button>
+      <button class="btn btn-primary btn-block shine anim a5" type="submit" id="goBtn">Lihat daftar kado <i class="fa-solid fa-arrow-right"></i></button>
     </form>
   </section>
 
@@ -61,6 +62,7 @@
       </div>
     </div>
     <div class="banner hidden" id="banner"></div>
+    <div class="event-card hidden" id="eventCard"></div>
 
     <div class="toolbar">
       <label class="search">
@@ -76,6 +78,11 @@
     </div>
 
     <div id="list"><div class="loading"><div class="spinner"></div>Memuat daftar kado…</div></div>
+
+    <section class="wishes hidden" id="wishes">
+      <div class="section-title"><i class="fa-solid fa-feather-pointed"></i> Ucapan &amp; Doa<small id="wishCount"></small></div>
+      <div id="wishList"></div>
+    </section>
 
     <footer class="footer">
       <div class="script">Terima kasih <i class="fa-solid fa-heart"></i></div>

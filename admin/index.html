@@ -41,7 +41,9 @@
     </div>
 
     <div class="seg" id="tabs" style="margin-top:16px">
-      <button data-tab="items" class="active">Daftar Barang</button>
+      <button data-tab="items" class="active">Barang</button>
+      <button data-tab="links">Link Tamu</button>
+      <button data-tab="history">Riwayat</button>
       <button data-tab="settings">Pengaturan</button>
     </div>
 
@@ -56,7 +58,39 @@
       <div id="list"><div class="loading"><div class="spinner"></div>Memuat…</div></div>
     </section>
 
+    <section id="tab-links" class="hidden">
+      <div class="panel">
+        <h3><i class="fa-solid fa-link"></i> Link khusus per tamu</h3>
+        <p>Tulis nama tamu, satu nama per baris. Setiap tamu mendapat link sendiri sehingga namanya langsung terisi saat membuka web.</p>
+        <textarea class="input" id="namesIn" rows="5" placeholder="Burhan&#10;Faiz&#10;Keluarga Pak Ahmad"></textarea>
+        <div class="field" style="margin-top:14px">
+          <label for="msgIn">Pesan WhatsApp <small style="color:var(--muted);font-weight:500">({nama} dan {link} akan diganti otomatis)</small></label>
+          <textarea class="input" id="msgIn" rows="4"></textarea>
+        </div>
+      </div>
+      <div id="linkList"></div>
+    </section>
+
+    <section id="tab-history" class="hidden">
+      <div class="panel">
+        <h3><i class="fa-solid fa-clock-rotate-left"></i> Riwayat perubahan</h3>
+        <p>Semua pilihan tamu &amp; perubahan admin tercatat di sini. Kalau ada yang iseng mengubah data, tekan <b>Pulihkan</b> pada versi sebelum kejadian. Pemulihan juga tercatat, jadi bisa dibatalkan lagi.</p>
+        <button class="btn btn-ghost btn-block" id="histReload" style="margin-top:0"><i class="fa-solid fa-rotate"></i> Muat ulang riwayat</button>
+      </div>
+      <div id="histList" style="margin-top:12px"></div>
+    </section>
+
     <section id="tab-settings" class="hidden">
+      <div class="panel">
+        <h3><i class="fa-solid fa-calendar-days"></i> Info acara</h3>
+        <p>Ditampilkan sebagai hitung mundur di halaman tamu. Kosongkan tanggal untuk menyembunyikannya.</p>
+        <form class="form" id="eventForm" style="margin-bottom:0">
+          <div class="field"><label for="evName">Nama acara</label><input class="input" id="evName" maxlength="60" placeholder="Akad &amp; Resepsi"></div>
+          <div class="field"><label for="evDate">Tanggal &amp; jam</label><input class="input" id="evDate" type="datetime-local"></div>
+          <div class="field"><label for="evPlace">Tempat <small style="color:var(--muted);font-weight:500">(opsional)</small></label><input class="input" id="evPlace" maxlength="80" placeholder="Nama gedung, kota"></div>
+          <button class="btn btn-primary btn-block" id="evSave" type="submit" style="margin-top:0">Simpan info acara</button>
+        </form>
+      </div>
       <div class="panel">
         <h3><span class="status-dot" id="dot"></span><span id="connTitle"></span></h3>
         <p id="connSub"></p>
