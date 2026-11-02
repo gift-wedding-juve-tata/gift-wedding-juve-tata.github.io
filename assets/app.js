@@ -383,11 +383,12 @@
     $("banner").classList.remove("hidden");
   }
 
-  // Link khusus tamu: ?nama=Burhan mengisi nama otomatis.
+  // Link khusus tamu: ?nama=Burhan atau ?name=Burhan mengisi nama otomatis.
   const params = new URLSearchParams(location.search);
-  const invited = cleanName(params.get("nama"));
+  const invited = cleanName(params.get("nama") || params.get("name"));
   if (invited) {
     params.delete("nama");
+    params.delete("name");
     history.replaceState(null, "", location.pathname + (params.toString() ? "?" + params : "") + location.hash);
     setMe(invited);
     askName(true);
